@@ -17,9 +17,16 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=1000)
-    bio = models.CharField(max_length=100)
+    bio = models.CharField(max_length=100,null=True,blank=True)
     image = models.ImageField(upload_to="user_images", default="default.jpg")
     verified = models.BooleanField(default=False)
+    
+    
+    def save(self,*args,**kwargs):
+
+        if self.full_name ==""or self.full_name ==None:
+            self.full_name=self.user.username
+        super(Profile,self).save(*args,**kwargs)
 
 
 def create_user_profile(sender, instance, created, **kwargs):
