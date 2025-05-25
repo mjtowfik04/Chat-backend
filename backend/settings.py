@@ -163,6 +163,9 @@ SIMPLE_JWT = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+ALLOWED_HOSTS = [".vercel.app",'127.0.0.1']
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
