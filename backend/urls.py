@@ -5,8 +5,14 @@ from django.urls import path
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to Chat Backend API 👋")
 
 urlpatterns = [
+    path('', home),  # 👈 Root URL view
+
     path('admin/', admin.site.urls),
     path('api/',include("api.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
