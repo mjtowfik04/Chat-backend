@@ -18,7 +18,7 @@ urlpatterns = [
     path("todo-mark-as-completed/<user_id>/<todo_id>/", views.TodoMarkAsCompleted.as_view()),
     # chat_data
     path("my-messages/<user_id>/",views.MyInbox.as_view()),
-    path("get-messages/<sender_id>/<receiver_id>",views.GetMessages.as_view()),
+    path("get-messages/<int:sender_id>/<int:receiver_id>/",views.GetMessages.as_view()),
     path("send-messages/",views.SendMessages.as_view()),
     #get/f
     path("profile/<int:pk>/",views.ProfileDetails.as_view()),

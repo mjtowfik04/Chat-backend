@@ -119,19 +119,24 @@ class MyInbox(generics.ListAPIView):
         return messages
 
 
+from rest_framework.exceptions import ValidationError
+
+
 class GetMessages(generics.ListAPIView):
-    serializer_class=ChatMessage
-    permission_classes=[IsAuthenticated]
+    serializer_class = MessageSerializer
 
     def get_queryset(self):
-        sender_id=self.kwargs['sender_id']
-        receiver_id=self.kwargs['receiver_id']
+        sender_id = self.kwargs['sender_id']
+        receiver_id = self.kwargs['receiver_id']
 
-        messages =ChatMessage.objects.filter(
-            sender_id=[sender_id, receiver_id],
-            receiver_id=[sender_id,receiver_id]
-        )
+        # Get all messages between these two users, regardless of who sent/received
+        messages = ChatMessage.objects.filter(
+            Q(sender_id=sender_id, receiver_id=receiver_id) |
+            Q(sender_id=receiver_id, receiver_id=sender_id)
+        ).order_by('date')
+        
         return messages
+
     
 
 class SendMessages(generics.CreateAPIView):
