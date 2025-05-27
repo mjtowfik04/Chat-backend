@@ -145,9 +145,13 @@ class SendMessages(generics.CreateAPIView):
 
 
 class ProfileDetails(generics.RetrieveUpdateAPIView):
-    serializer_class=ProfileSerializer
-    queryset=Profile.objects.all()
-    permission_classes=[IsAuthenticated]
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 
 
@@ -171,6 +175,11 @@ class SearchUser(generics.ListAPIView):
             )
         serializer=self.get_serializer(users,many=True)
         return Response(serializer.data)
+
+
+
+
+
         
 
     

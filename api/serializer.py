@@ -12,9 +12,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = Profile
-        fields =['id','user','full_name','bio','image']
+        fields = ['id', 'user', 'full_name', 'bio', 'image']
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
