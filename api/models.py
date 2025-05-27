@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
-
+from cloudinary.models import CloudinaryField
 
 class User(AbstractUser):
     username = models.CharField(max_length=100)
@@ -18,7 +18,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=1000)
     bio = models.CharField(max_length=100,null=True,blank=True)
-    image = models.ImageField(upload_to="user_images", default="default.jpg")
+    image = CloudinaryField('image', default="default.jpg")
     verified = models.BooleanField(default=False)
     
     

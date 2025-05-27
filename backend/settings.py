@@ -247,39 +247,17 @@ CKEDITOR_5_CONFIGS = {
             "blockQuote",
         ],
         "toolbar": [
-            # "heading",
-            # "codeBlock",
-            # "|",
             
-            # "|",
             "bold",
             "italic",
-            # "link",
             "underline",
             "strikethrough",
-            # "code",
-            # "subscript",
-            # "superscript",
-            # "highlight",
+           
             "|",
             "bulletedList",
-            # "numberedList",
-            # "todoList",
-            # "|",
-            # "outdent",
-            # "indent",
-            # "|",
-            # "blockQuote",
-            # "insertImage",
-            # "|",
-            # "fontSize",
-            # "fontFamily",
-            # "fontColor",
-            # "fontBackgroundColor",
-            # "mediaEmbed",
+           
             "removeFormat",
-            # "insertTable",
-            # "sourceEditing",
+            
         ],
         "image": {
             "toolbar": [
@@ -421,3 +399,17 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
+
+# Configuration       
+cloudinary.config( 
+    cloud_name = "dzdkjttcz", 
+    api_key = "913126359611261", 
+    api_secret = "9RyqQWXiTxgXCzAIYVfnUu89Ljc", # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
+
+DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
