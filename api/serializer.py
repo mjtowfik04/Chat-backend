@@ -5,10 +5,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'email')
+
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -17,6 +14,14 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id', 'user', 'full_name', 'bio', 'image']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email')
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

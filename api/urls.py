@@ -23,5 +23,7 @@ urlpatterns = [
     #get/f
     path("profile/<int:pk>/",views.ProfileDetails.as_view()),
     path("search/<username>/",views.SearchUser.as_view()),
+    path('users/',views.AllUserListView.as_view(), name='all-users'),
+
 
 ]

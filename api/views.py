@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from api.models import User, Todo,ChatMessage,Profile
 
-from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, TodoSerializer,MessageSerializer,ProfileSerializer
+from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, TodoSerializer,MessageSerializer,ProfileSerializer,UserSerializer
 from django.db.models import Subquery,OuterRef,Q
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -183,3 +183,8 @@ class SearchUser(generics.ListAPIView):
         
 
     
+# views.py এর নিচে যুক্ত করো
+class AllUserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
