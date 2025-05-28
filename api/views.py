@@ -187,4 +187,4 @@ class SearchUser(generics.ListAPIView):
 class AllUserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
